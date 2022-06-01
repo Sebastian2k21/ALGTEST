@@ -1,0 +1,32 @@
+public static string LongestIdenticalString(string input)
+        {
+            string seq = input[0] + ""; // zapisujesz pierwsza litere
+            string max = input[0] + ""; // zapisujesz pierwsza litere
+            for (int i = 1; i < input.Length; i++) // przechodzisz po kazdej literze, od indeksu 1
+            {
+                char current = input[i]; // zapisujesz literke o biezacym (i) indeksie
+                char prev = input[i - 1]; // zapisujesz poprzednia literke (i-1) indeksie
+                if (current == prev) // sprawdzasz czy poprzednia i biezaca litera sa takie same
+                {
+                    seq += current; // jesli sa takie same, to to zmiennej seq dopisujesz biezaca litere
+                }
+                else // jezeli nie sa takie same
+                {
+                    if (max.Length < seq.Length) // sprawdzasz czy ilosc liter w zmiennej seq jest wieksza od ilosci liter w zmiennej max
+                    {
+                        max = seq; // jesli tak, to do zmiennej max wpisujesz wartosc zmiennej seq
+                    }
+                    seq = current + ""; // do zmiennej seq wpisujesz pierwsza litere biezacego ciagu
+                }
+
+                if (i == input.Length - 1) // [0] -> [1] -> [2] -> [3]
+                {
+                    if (max.Length < seq.Length) // sprawdzasz czy ilosc liter w zmiennej seq jest wieksza od ilosci liter w zmiennej max
+                    {
+                        max = seq; // jesli tak, to do zmiennej max wpisujesz wartosc zmiennej seq
+                    }
+                    seq = current + ""; // do zmiennej seq wpisujesz pierwsza litere biezacego ciagu
+                }
+            }
+            return max; // zwracasz najdluzszy znaleziony ciag
+        }
